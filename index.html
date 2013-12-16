@@ -13,7 +13,7 @@
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
         <script src="jquery-2.0.3.min.js"></script>
-        <!--script src="iscroll.js"></script-->
+        <script src="iscroll.js"></script>
         <script src="isotope.pkgd.js"></script>
         <script src="imagesloaded.pkgd.min.js"></script>
         <script type="text/javascript">
@@ -30,7 +30,7 @@
 
             $(document).ready(function(){
                 //Enable smooth scrolling on navigation menu    
-                //myScroll = new IScroll('#menu', { mouseWheel: true });
+                myScroll = new IScroll('#menu', { mouseWheel: true });
 
                 //Enable isotope
                 var $container = $("#snippets");
