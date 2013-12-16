@@ -2327,7 +2327,7 @@ Outlayer.prototype.resize = function() {
   if ( hasSizes && size.innerWidth === this.size.innerWidth ) {
     return;
   }
-  console.log("resize isotpe.. triggering layout");
+
   this.layout();
 };
 
