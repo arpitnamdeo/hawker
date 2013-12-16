@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+    <head>    
+        <title>Bootstrap 101 Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Bootstrap -->
+        <!--link href="css/bootstrap.min.css" rel="stylesheet"-->
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+        <script src="jquery-2.0.3.min.js"></script>
+        <script src="iscroll.js"></script>
+        <script src="isotope.pkgd.min.js"></script>
+        <script src="imagesloaded.pkgd.min.js"></script>
+        <script type="text/javascript">
+            // debulked onresize handler
+            //function on_resize(c,t){onresize=function(){clearTimeout(t);t=setTimeout(c,100)};return c};
+
+            var myScroll;
+            document.addEventListener('touchmove', function (e) {e.preventDefault();}, false);
+
+            //function noop(){
+                //empty
+                //alert("no-operation");
+            //}
+
+            $(document).ready(function(){
+                //Enable smooth scrolling on navigation menu    
+                myScroll = new IScroll('#menu', { mouseWheel: true });
+
+                //Enable isotope
+                var $container = $("#snippets");
+
+                // cache jQuery window
+                var $window = $(window);
+
+                //define relayout function for isotope rendering
+                function reLayout() {
+                    //alert("layout");
+                    //var mediaQueryId = getComputedStyle( document.body, ':after' ).getPropertyValue('content');
+                        // console.log( mediaQueryId );
+                    //var windowSize = $window.width();
+                    var masonryOpts = {columnWidth: '.snippet'};
+                    // update sizing options 
+                    /*switch ( mediaQueryId ) {
+                        case 'x-large' :
+                            masonryOpts = {
+                                columnWidth: 270,
+                                gutterWidth: 30
+                            };
+                            break;
+                        
+                        case 'large' :
+                            masonryOpts = {
+                                columnWidth: 220,
+                                gutterWidth: 20
+                            };
+                            break;
+
+                        case 'medium' :
+                            masonryOpts = {
+                                columnWidth: 166,
+                                gutterWidth: 20
+                            };
+                            break;
+                        
+                        case 'small' :
+                            masonryOpts = {
+                                columnWidth: $container.width() / 2,
+                                gutterWidth: 0
+                            };
+                            break;
+                    }*/
+//alert("here now");
+                    $container.isotope({
+                        //resizable: false, // disable resizing by default, we'll trigger it manually
+                        itemSelector : '.snippet',
+                        masonry: masonryOpts
+                    });
+
+                    //$container.isotope('unbindResize');
+
+                }
+
+                /*$('#snippets').resize(function() {
+                    //console.log('relayout');
+                    $container.isotope('layout');
+                    alert("layed out again");
+                });*/
+
+                /*on_resize(function() {
+                    
+                    $container.isotope('layout');
+                    //reLayout();
+                })();*/ // these parenthesis does the trick
+
+                // start up isotope with default settings
+                imagesLoaded($container, function(){
+                    reLayout();
+                    //$window.smartresize( reLayout );
+                });
+            });
+
+
+
+        </script>
+
+        
+        <style type="text/css">
+            * {
+                box-sizing: border-box;
+            }
+
+            html, body {
+                background-color: rgba(241, 241, 241, 1.0); /*gray; #eeeeee;*/
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                font-family: "Roboto Condensed", Helvetica, sans-serif;
+                overflow-x: hidden;
+            }
+
+            body {
+                position: relative;
+            }
+
+            #three-lines {
+                float: left;
+                font-size: 2.5em;
+                width: 1.5em;
+                padding-left: 0.5em;
+                color: rgba(243, 156, 18,1.0);
+            }
+
+            #logo {
+                height: 3em;
+                width: 3em;
+                line-height: 3em;
+                padding: 0.5em;
+                position: relative;
+                float: left;
+            }
+
+            #menu-checkbox {
+                display: none;
+            }
+
+            header[role="banner"] {
+                width: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 101;
+                height: 3em;
+                background-color: rgba(236, 240, 241,1.0); /*#e4e4e4;*/
+                border-bottom: 1px solid #cecece;
+            }
+
+            #overlay {
+                display: none;
+                width: 100%;
+                height: 100%;
+                background-color: transparent;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 100;
+            }
+
+
+
+            #menu-btn {
+                background-color: transparent;
+                border: none;
+                color: #222222;
+                /*font-size: 30px;
+                font-weight: 300;*/
+                line-height: 3em;
+                width: 3.5em;
+                height: 3em;
+                position: relative;
+                padding: 0;
+                margin: 0;
+                left: -0.5em;
+                cursor: pointer;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            nav[role="breadcrumbs"] {
+                position: relative;
+                float:left;
+                width: 20em;
+            }
+
+            nav[role="breadcrumbs"] ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            nav[role="breadcrumbs"] ul li {
+                display: table-cell;
+                margin: 0;
+                padding: 0;
+                height: 100%;
+            }
+
+            nav[role="breadcrumbs"] ul li a {
+                display: inline-block;
+                padding: 0 1em;
+                width: 100%;
+                height: 100%;
+                text-decoration: none;
+                text-indent: none;
+                color: rgba(243, 156, 18,1.0);
+                line-height: 3em;
+                border-bottom: 1px solid green;
+                /*
+                border-left: 1px solid blue;
+                border-right: 1px solid blue;
+                border-bottom: 1px solid blue;*/
+                background: rgba(255, 255, 255, 1);
+            }
+
+            nav[role="breadcrumbs"] > ul > li > a {
+                text-align: center;
+            }
+
+            nav[role="breadcrumbs"] ul ul {
+                position: absolute;
+                display: none;
+                width: 100%;
+            /*    border-left: 1px solid white;
+                border-right: 1px solid white;
+                border-bottom: 1px solid white;*/
+            }
+
+            nav[role="breadcrumbs"] a:hover {
+                background-color: orange;
+                color:white;
+            }
+
+            nav[role="breadcrumbs"] li:hover > ul {
+                display: block;
+            }
+
+            nav[role="breadcrumbs"] li li {
+                display: block;
+            }
+
+            /* START SIDE MENU */
+            #menu {
+                position: fixed;
+                visibility: hidden;
+                top: 3em;
+                left: 0;
+                bottom: 0;
+                z-index: 101;
+                padding: 0;
+                margin: 0;
+                overflow: hidden;
+                /* when using iscroll
+                overflow-x:hidden;
+                overflow-y:auto;*/
+                width:65%;
+                /*height: 100%;*/
+                background: #434343;
+                color: white;
+                -webkit-transition: all 0.2s cubic-bezier(0.8, 0, 0.2, 1) 0s;
+                transition: all 0.2s cubic-bezier(0.8, 0, 0.2, 1) 0s;
+                -webkit-transform: translateX(-100%);
+                transform: translateX(-100%);
+                /*border-right: 1px solid lightgray;*/
+                box-shadow: 2px 0 4px 0 rgba(0, 0, 0, 0.5); 
+            }			
+      	 
+            nav[role="navigation"] ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            nav[role="navigation"] ul li {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                display: block;
+                /*height: 2em;*/
+            }
+
+    	    nav[role="navigation"] ul li a {
+                display: block;
+                padding: 0 1em;
+                width: 100%;
+                height: 100%;
+                text-decoration: none;
+                text-indent: none;
+                color: rgba(243, 156, 18,1.0);
+                line-height: 2em;
+                border-bottom: 1px solid lightgray;
+                /*background: rgba(255, 255, 255, 1);*/
+         	}
+
+    		nav[role="navigation"] ul ul {
+    			/*display: none;*/
+    		}
+
+            nav[role="navigation"] ul ul li a {
+    			padding-left: 2em;
+    		}
+
+    		nav[role="navigation"] ul li:hover ul {
+    			display: block;
+    		}
+    	 
+    	/* END NAV MENU */
+
+            #content {
+                margin-top: 60px;
+            }
+
+            #items {
+                width: 100%;
+                margin: 0;
+                padding: 20px;
+            }
+
+            #items li {
+                list-style-type: none;
+                background-color: white;
+                border: 1px solid #dddddd;
+                border-bottom: 2px solid #dddddd;
+                min-height: 300px;
+                width: 100%;
+                margin-bottom: 20px;
+                padding: 10px;
+                font-size: 30px;
+            }
+
+            #menu-checkbox:checked ~ header[role="banner"] #overlay {
+                display: block;
+            }
+
+            #menu-checkbox:checked ~ header[role="banner"] #menu {
+                visibility: visible;
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+            }
+
+            #menu-checkbox:checked ~ header[role="banner"] #three-lines {
+                position: relative;
+                left: -3px;
+            }
+
+            #menu-checkbox:checked ~ section[role="main"] {
+                left:65%;
+            }
+
+            aside {
+                margin-top: 3em;
+                padding: 1em;
+            }
+
+      		section[role="main"] {
+      			position: relative;
+                width: 100%;
+                -webkit-transition: all 0.2s cubic-bezier(0.8, 0, 0.2, 1) 0s;
+                transition: all 0.2s cubic-bezier(0.8, 0, 0.2, 1) 0s;
+                /*-webkit-transform: translateX(-100%);
+                transform: translateX(-100%);*/
+
+      		}
+
+        	/*section[role="main"] article*/
+            .snippet {
+                padding:1em;
+                width:100%;
+        		/*width: 33%;*/
+        		/*float: left;*/
+            }          
+
+            section[role="main"]:before, section[role="main"]:after {
+                clear: both;
+            }
+
+            footer {
+                clear: both;
+            }
+
+            body:after {
+                /*display:none;*/
+                content:"small";
+            }
+        
+            body:before {
+                content:"small";
+            }
+
+            @media screen and (min-width: 480px) and (max-width: 799px) {
+                
+                body:after {
+                    content:"medium";
+                }
+
+                body:before {
+                    content:"medium";
+                }
+
+                #menu {
+                    width:40%;
+                }
+
+                .snippet {
+                    width:49%;
+                }
+
+                #menu-checkbox:checked ~ section[role="main"] {
+                    left:40%;
+                    width:60%;
+                }            
+            }
+
+            @media screen and (min-width: 800px) and (max-width: 1199px) {
+                
+                body:after {
+                    content:"large";
+                }                
+
+                body:before {
+                    content:"large";
+                }
+
+                #menu {
+                    width:20%;
+                }
+
+                .snippet {
+                    width:33%;
+                }  
+
+                #menu-checkbox:checked ~ section[role="main"] {
+                    left:20%;
+                    width:80%;
+                }          
+            }
+
+            @media screen and (min-width: 1200px) {
+
+                body:after {
+                    content:"x-large";
+                }
+                
+                body:before {
+                    content:"x-large";
+                }
+
+                #menu {
+                    width:17em;
+                }
+
+                .snippet {
+                    width:25%;
+                }
+
+                #menu-checkbox:checked ~ section[role="main"] {
+                    left:0;
+                    padding-left:17em;
+                }
+            }
+
+            @media print {
+
+            }
+
+        </style>
+
+    </head>
+    <body>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <!--script src="https://code.jquery.com/jquery.js"></script-->
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <!--script src="js/bootstrap.min.js"></script-->
+
+        <input id="menu-checkbox" type="checkbox" />
+        <header role="banner">
+
+          <!-- http://codepen.io/donysukardi/pen/JioCg -->
+            <section id="menu" role="sidebar">
+                <nav role="navigation">
+      		        <ul>
+              		    <li><a href="#">Home</a></li>
+              		    <li><a href="#">About Us</a>
+              		        <ul>
+              		            <li><a href="#">Our Crew</a></li>
+              		            <li><a href="#">Plumbing History</a></li>
+              		            <li><a href="#">Plumbing Vision</a></li>
+              		        </ul>
+              		    </li>
+              		    <li><a href="#">Products</a>
+              		        <ul>
+              		            <li><a href="#">Pipes</a></li>
+              		            <li><a href="#">Wrenches</a></li>
+              		            <li><a href="#">Soldering Tools</a></li>
+              		            <li><a href="#">PVC Joints</a></li>
+              		            <li><a href="#">Spacely Sprockets</a></li>
+              		        </ul>
+                        </li>
+    	                <li><a href="#">Services</a>
+              		        <ul>
+              		            <li><a href="#">Site Visits</a></li>
+              		            <li><a href="#">Spot Welding</a></li>
+              		            <li><a href="#">TiG Welding</a></li>
+              		            <li><a href="#">MiG Welding</a></li>
+              		            <li><a href="#">Drain Service</a></li>
+      		                </ul>
+      		            </li>          
+      		            <li>
+                            <a href="#">Contact</a>
+              		        <ul>
+              		            <li><a href="#">Via Email</a></li>
+              		            <li><a href="#">Web Form</a></li>
+              		            <li><a href="#">Carrier Pigeon</a></li>
+      		                </ul>
+      		            </li>
+      		        </ul>
+      		    </nav>
+            </section>
+            <label id="overlay" for="menu-checkbox"></label>
+          
+            <label id="menu-btn" for="menu-checkbox">
+                <span id="three-lines">&#8801;</span>
+                <!--img id="logo" src="http://donysukardi.com/img/logo.png"-->
+            </label>
+            <nav role="breadcrumbs">
+                <ul>
+                    <li>
+                        <a href="#">Menu Item 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Item 2 with Submenu</a>
+                        <ul>
+                            <li>
+                                <a href="#">Submenu 1 Item 1</a>
+                            </li>
+                            <li>
+                                <a class="menu-nav" href="#">Submenu 2</a>
+                                <ul>
+                                    <li>
+                                        <a class="menu-nav" href="#">Submenu 2 > Submenu 3</a>
+                                        <ul>
+                                            <li><a href="#">Submenu 3 Item 1</a></li>
+                                            <li><a href="#">Submenu 3 Item 1</a></li>
+                                            <li><a href="#">Submenu 3 Item 1</a></li>
+                                            <li><a href="#">Submenu 3 Item 1</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Submenu 2 Item 2</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>   
+            </nav>
+            
+          
+        <!--div id="content">
+            <ul id="items">
+                <li><div id="1"></div></li>
+                <li><div id="2"></div></li>
+                <li><div id="3"></div></li>
+                <li><div id="4"></div></li>
+                <li><div id="5"></div></li>
+            </ul>
+         </div-->
+
+
+        	
+
+            
+        </header>
+        <aside>
+        	<h1>Hello, world!</h1>
+        </aside>
+
+      	<section role="main" id="snippets">
+
+      		<article data-article-id="articleID" tabindex="0" contextmenu="article-actions" class="snippet">
+      			<header role="headline">
+      				<h2><a href="http://www.bbc.co.uk/news/uk-25301907#sa-ns_mchannel=rss&amp;ns_source=PublicRSS20-sa" target="_blank">Rigby killer 'a soldier of Allah'</a></h2>
+      			</header>
+      			<h3>
+      				<time datetime="2013-12-09T15:48:28.000Z" pubdate="">5 hours ago</time>
+      				<span>BBC News - Home</span>
+      			</h3>
+      			<p>A man admits in court that he killed soldier Lee Rigby but says it was not murder because &quot;I am a soldier of Allah&quot; and &quot;this ... A man admits in court that he killed soldier Lee Rigby but says it was not murder because &quot;I am a soldier of Allah&quot; and &quot;this ... A man admits in court that he killed soldier Lee Rigby but says it was not murder because &quot;I am a soldier of Allah&quot; and &quot;this ...A man admits in court that he killed soldier Lee Rigby but says it was not murder because &quot;I am a soldier of Allah&quot; and &quot;this ...A man admits in court that he killed soldier Lee Rigby but says it was not murder because &quot;I am a soldier of Allah&quot; and &quot;this ...</p>
+      			<figure>
+                      <img src="http://www.bbc.co.uk/news/#sa-ns_mchannel=rss&amp;ns_source=PublicRSS20-sa/favicon.ico">
+                      <figcaption></figcaption>
+                  </figure>
+      			<div class="fullArticle">A man admits in court that he killed soldier Lee Rigby but says it was not because &quot;I am a soldier of Allah&quot; and &quot;this is a war&quot;.</div>
+      		</article>
+
+      		<article data-article-id="articleID" tabindex="0" contextmenu="article-actions" class="snippet">
+      			<header role="headline">
+      				<h2><a href="http://www.bbc.co.uk/news/uk-25301907#sa-ns_mchannel=rss&amp;ns_source=PublicRSS20-sa" target="_blank">Rigby killer 'a soldier of Allah'</a></h2>
+      			</header>
+      			<h3>
+      				<time datetime="2013-12-09T15:48:28.000Z" pubdate="">5 hours ago</time>
+      				<span>BBC News - Home</span>
+      			</h3>
+      			<p>A man admits in court that he killed soldier Lee Rigby but says it was not murder because &quot;I am a soldier of Allah&quot; and &quot;this ... A man admits in court that he killed soldier Lee Rigby but says it was not murder because &quot;I am a soldier of Allah&quot; and &quot;this ... A man admits in court that he killed soldier Lee Rigby but says it was not murder because &quot;I am a soldier of Allah&quot; and &quot;this ...A man admits in court that he killed soldier Lee Rigby but says it was not murder because &quot;I am a soldier of Allah&quot; and &quot;this ...A man admits in court that he killed soldier Lee Rigby but says it was not murder because &quot;I am a soldier of Allah&quot; and &quot;this ...</p>
+      			<figure>
+                      <img src="http://www.bbc.co.uk/news/#sa-ns_mchannel=rss&amp;ns_source=PublicRSS20-sa/favicon.ico">
+                      <figcaption></figcaption>
+                  </figure>
+      			<div class="fullArticle">A man admits in court that he killed soldier Lee Rigby but says it was not because &quot;I am a soldier of Allah&quot; and &quot;this is a war&quot;.</div>
+      		</article>
+
+      		<article data-article-id="articleID" tabindex="0" contextmenu="article-actions" class="snippet">
+      			<header role="headline">
+      				<h2><a href="http://www.bbc.co.uk/news/uk-25301907#sa-ns_mchannel=rss&amp;ns_source=PublicRSS20-sa" target="_blank">Rigby killer 'a soldier of Allah'</a></h2>
+      			</header>
+      			<h3>
+      				<time datetime="2013-12-09T15:48:28.000Z" pubdate="">5 hours ago</time>
+      				<span>BBC News - Home</span>
+      			</h3>
+      			<p>A man admits in court that he killed soldier Lee Rigby but says it was not murder because &quot;I am a soldier of Allah&quot; and &quot;this ... A man admits in court that he killed soldier Lee Rigby but says it was not murder because &quot;I am a soldier of Allah&quot; and &quot;this ... A man admits in court that he killed soldier Lee Rigby but says it was not murder because &quot;I am a soldier of Allah&quot; and &quot;this ...A man admits in court that he killed soldier Lee Rigby but says it was not murder because &quot;I am a soldier of Allah&quot; and &quot;this ...A man admits in court that he killed soldier Lee Rigby but says it was not murder because &quot;I am a soldier of Allah&quot; and &quot;this ...</p>
+      			<figure>
+                      <img src="http://www.bbc.co.uk/news/#sa-ns_mchannel=rss&amp;ns_source=PublicRSS20-sa/favicon.ico">
+                      <figcaption></figcaption>
+                  </figure>
+      			<div class="fullArticle">A man admits in court that he killed soldier Lee Rigby but says it was not because &quot;I am a soldier of Allah&quot; and &quot;this is a war&quot;.</div>
+      		</article>
+
+      		<article data-article-id="articleID" tabindex="0" contextmenu="article-actions" class="snippet">
+      			<header role="headline">
+      				<h2><a href="http://www.bbc.co.uk/news/uk-25301907#sa-ns_mchannel=rss&amp;ns_source=PublicRSS20-sa" target="_blank">Rigby killer 'a soldier of Allah'</a></h2>
+      			</header>
+      			<h3>
+      				<time datetime="2013-12-09T15:48:28.000Z" pubdate="">5 hours ago</time>
+      				<span>BBC News - Home</span>
+      			</h3>
+      			<p>A man admits in court that he killed soldier Lee Rigby but says it was not murder because &quot;I am a soldier of Allah&quot; and &quot;this ... A man admits in court that he killed soldier Lee Rigby but says it was not murder because &quot;I am a soldier of Allah&quot; and &quot;this ... A man admits in court that he killed soldier Lee Rigby but says it was not murder because &quot;I am a soldier of Allah&quot; and &quot;this ...A man admits in court that he killed soldier Lee Rigby but says it was not murder because &quot;I am a soldier of Allah&quot; and &quot;this ...A man admits in court that he killed soldier Lee Rigby but says it was not murder because &quot;I am a soldier of Allah&quot; and &quot;this ...</p>
+      			<figure>
+                      <img src="http://www.bbc.co.uk/news/#sa-ns_mchannel=rss&amp;ns_source=PublicRSS20-sa/favicon.ico">
+                      <figcaption></figcaption>
+                  </figure>
+      			<div class="fullArticle">A man admits in court that he killed soldier Lee Rigby but says it was not because &quot;I am a soldier of Allah&quot; and &quot;this is a war&quot;.</div>
+      		</article>
+      	</section>
+
+        <footer>
+            <small>Page footer</small>
+        </footer>
+    </body>
+</html>
