@@ -44,7 +44,7 @@
                     //var mediaQueryId = getComputedStyle( document.body, ':after' ).getPropertyValue('content');
                         // console.log( mediaQueryId );
                     //var windowSize = $window.width();
-                    var masonryOpts = {columnWidth: '.snippet'};
+                    var masonryOpts = {columnWidth: '.snippet', gutter: '.snippet-gutter'};
                     // update sizing options 
                     /*switch ( mediaQueryId ) {
                         case 'x-large' :
@@ -115,6 +115,8 @@
         <style type="text/css">
             * {
                 box-sizing: border-box;
+                margin: 0;
+                padding: 0;
             }
 
             html, body {
@@ -124,6 +126,8 @@
                 margin: 0;
                 padding: 0;
                 font-family: "Roboto Condensed", Helvetica, sans-serif;
+                font-size: 100%
+                line-height: 1.5em;
                 overflow-x: hidden;
             }
 
@@ -380,6 +384,7 @@
       		section[role="main"] {
       			position: relative;
                 width: 100%;
+                padding: 0.5%;
                 -webkit-transition: all 0.2s cubic-bezier(0.8, 0, 0.2, 1) 0s;
                 transition: all 0.2s cubic-bezier(0.8, 0, 0.2, 1) 0s;
                 /*-webkit-transform: translateX(-100%);
@@ -389,11 +394,24 @@
 
         	/*section[role="main"] article*/
             .snippet {
-                padding:1em;
-                width:100%;
+                padding: .7em;
+                width: 100%;
+                margin: 1.5em 0;
         		/*width: 33%;*/
         		/*float: left;*/
-            }     
+                /*padding: 0.7em 0.7em 0.7em 0.7em;
+                margin: 0 0.5em 1em 0.5em;*/
+                border: solid whitesmoke 0.1em;
+                /*border-right: solid white 0.15em;*/
+                border-radius: 0.2em;
+                background-color: white;
+                box-shadow: 0em 0.25em 0.3em #888888; 
+                line-height: 1.5em;
+            }  
+
+            .snippet-gutter {
+                width: 1%;
+            }   
 
             section[role="main"]:before, section[role="main"]:after {
                 clear: both;
@@ -424,8 +442,12 @@
                 }   
 
                 .snippet {
-                    width:49%;
-                }         
+                    width:47%;
+                }  
+
+                .snippet-gutter {
+                    width: 0.5%;
+                }        
             }
 
             @media screen and (min-width: 800px) and (max-width: 1199px) {
@@ -444,8 +466,12 @@
                 }  
 
                 .snippet {
-                    width:33%;
-                }          
+                    width:31.333%;
+                }     
+
+                .snippet-gutter {
+                    width: 0.333%;
+                }       
             }
 
             @media screen and (min-width: 1200px) and (max-width: 1499px) {
@@ -465,8 +491,12 @@
                 }
 
                 .snippet {
-                    width:25%;
-                }
+                    width: 23%;
+                }  
+
+                .snippet-gutter {
+                    width: 0.25%;
+                }   
             }
 
             @media screen and (min-width: 1500px) {
@@ -611,7 +641,7 @@
         </aside>
 
       	<section role="main" id="snippets">
-
+            <div class="snippet-gutter"></div>
       		<article data-article-id="articleID" tabindex="0" contextmenu="article-actions" class="snippet">
       			<header role="headline">
       				<h2><a href="http://www.bbc.co.uk/news/uk-25301907#sa-ns_mchannel=rss&amp;ns_source=PublicRSS20-sa" target="_blank">Rigby killer 'a soldier of Allah'</a></h2>
