@@ -26,6 +26,8 @@ function createCORSRequest(method, url) {
   if ("withCredentials" in xhr) {
     // XHR for Chrome/Firefox/Opera/Safari.
     xhr.open(method, url, true);
+    xhr.withCredentials = true;
+    xhr.setRequestHeader('Content-Type', 'plain/text');
   } else if (typeof XDomainRequest != "undefined") {
     // XDomainRequest for IE.
     xhr = new XDomainRequest();
