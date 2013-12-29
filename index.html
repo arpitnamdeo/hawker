@@ -199,7 +199,7 @@ function createQuery(type, feedUrl, queryParameters){
 		queryString += key + "=" + queryParameters[key] + "&";
 	}
 
-	return queryString;
+	return queryString + "callback=?";
 }
 
 makeCorsRequest();
