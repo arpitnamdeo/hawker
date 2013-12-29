@@ -126,12 +126,13 @@
 
 // Create the XHR object.
 function createCORSRequest(method, url) {
+	console.log(method + ":" + url);
   var xhr = new XMLHttpRequest();
   if ("withCredentials" in xhr) {
     // XHR for Chrome/Firefox/Opera/Safari.
     xhr.open(method, url, true);
-    xhr.withCredentials = true;
-    xhr.setRequestHeader('Content-Type', 'plain/text');
+/*    xhr.withCredentials = true;
+    xhr.setRequestHeader('Content-Type', 'plain/text');*/
   } else if (typeof XDomainRequest != "undefined") {
     // XDomainRequest for IE.
     xhr = new XDomainRequest();
@@ -181,16 +182,18 @@ function makeCorsRequest() {
     console.log(messageData);
   };
 
-  xhr.onerror = function() {
-    var messageData = 'Woops, there was an error making the request.';
+  xhr.onerror = function(e) {
+    var messageData = 'Woops, there was an error making the request.' + e.total;
     console.log(messageData);
   };
 
+  //xhr.withCredentials = true;
+  //xhr.setRequestHeader("Access-Control-Request-Methods","GET");
   xhr.send();
 }
 
 function createQuery(type, feedUrl, queryParameters){
-	var queryString = "//ajax.googleapis.com/ajax/services/feed/" + type + "?v=1.0&q=" + encodeURIComponent(feedUrl) + "&";
+	var queryString = "http://ajax.googleapis.com/ajax/services/feed/" + type + "?v=1.0&q=" + encodeURIComponent(feedUrl) + "&";
 
 	for(var key in queryParameters){
 		queryString += key + "=" + queryParameters[key] + "&";
