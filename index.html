@@ -183,12 +183,19 @@ function makeCorsRequest() {
   };
 
   xhr.onerror = function(e) {
-    var messageData = 'Woops, there was an error making the request.' + e.total;
+    messageData = 'Woops, there was an error making the request.' + e.total;
     console.log(messageData);
   };
 
+  xhr.onprogress = function(e) {
+  	messageData = 'Some progress: ' + e.total;
+    console.log(messageData);
+  }
+
   //xhr.withCredentials = true;
-  //xhr.setRequestHeader("Access-Control-Request-Methods","GET");
+  xhr.setRequestHeader("Referer","http://arpitnamdeo.github.io/hawker/");
+  xhr.setRequestHeader('X-PINGOTHER', 'pingpong');
+  xhr.onreadystatechange = function(){alert("done")};
   xhr.send();
 }
 
