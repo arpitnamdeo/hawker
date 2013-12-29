@@ -112,7 +112,7 @@
             }*/
 
             //Create and call a worker
-            var worker = new Worker("js/feedworker.js");
+/*            var worker = new Worker("js/feedworker.js");
 
             worker.addEventListener('message', function(e){
             	console.log('Worker said: '+ e.data);
@@ -120,6 +120,86 @@
             }, false);
 
             worker.postMessage({});
+
+*/
+
+
+// Create the XHR object.
+function createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+    // XHR for Chrome/Firefox/Opera/Safari.
+    xhr.open(method, url, true);
+    xhr.withCredentials = true;
+    xhr.setRequestHeader('Content-Type', 'plain/text');
+  } else if (typeof XDomainRequest != "undefined") {
+    // XDomainRequest for IE.
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+  } else {
+    // CORS not supported.
+    xhr = null;
+  }
+  return xhr;
+}
+
+var messageData;
+
+// Make the actual CORS request.
+function makeCorsRequest() {
+
+
+	//TODO remove after testing
+	feedurl = "http://rss.cnn.com/rss/edition.rss";
+
+	var ajaxoptions = {
+		"type": "load",
+
+		"load": {
+			"num": "20",
+			"output": "json"
+		},
+		
+		"find": {
+
+		}
+
+	};
+
+	var ajaxUrl = createQuery(ajaxoptions["type"], feedurl, ajaxoptions[ajaxoptions["type"]]);
+
+  var xhr = createCORSRequest('GET', ajaxUrl);
+  if (!xhr) {
+    messageData = 'CORS not supported';
+    console.log(messageData);
+    return;
+  }
+
+  // Response handlers.
+  xhr.onload = function() {
+    messageData = xhr.responseText;
+    console.log(messageData);
+  };
+
+  xhr.onerror = function() {
+    var messageData = 'Woops, there was an error making the request.';
+    console.log(messageData);
+  };
+
+  xhr.send();
+}
+
+function createQuery(type, feedUrl, queryParameters){
+	var queryString = "//ajax.googleapis.com/ajax/services/feed/" + type + "?v=1.0&q=" + encodeURIComponent(feedUrl) + "&";
+
+	for(var key in queryParameters){
+		queryString += key + "=" + queryParameters[key] + "&";
+	}
+
+	return queryString;
+}
+
+makeCorsRequest();
 
         </script>
 
