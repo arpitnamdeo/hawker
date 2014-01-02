@@ -171,6 +171,7 @@ nav[role="breadcrumbs"] li li {
     transform: translateX(-100%);
     /*border-right: 1px solid lightgray;*/
     box-shadow: 3px 0 4px 0 rgba(0, 0, 0, 0.60); 
+    opacity: 0;
 }			
  
 nav[role="navigation"] ul {
@@ -325,6 +326,7 @@ body:after {
     visibility: visible;
     -webkit-transform: translateX(0);
     transform: translateX(0);
+    opacity: 1;
 }
 
 #menu-checkbox:checked ~ header[role="banner"] #three-lines {
